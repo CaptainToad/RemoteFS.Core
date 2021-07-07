@@ -3,9 +3,9 @@ using System.IO;
 
 namespace API.Models
 {
-    public class Drive
+    public class DriveModel
     {
-        public Drive(DriveInfo driveInfo)
+        public DriveModel(DriveInfo driveInfo)
         {
             Name = driveInfo.Name;
             Format = driveInfo.DriveFormat;

@@ -3,9 +3,9 @@ using System.IO;
 
 namespace API.Models
 {
-    public class FileSystemObject
+    public class FileSystemObjectModel
     {
-        public FileSystemObject(FileSystemInfo fileSystemInfo)
+        public FileSystemObjectModel(FileSystemInfo fileSystemInfo)
         {
             Name = fileSystemInfo.Name;
             Exists = fileSystemInfo.Exists;

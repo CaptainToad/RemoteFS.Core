@@ -14,16 +14,16 @@ namespace API.Controllers
     public class DrivesController : ControllerBase
     {
         private readonly ILogger<DrivesController> _logger;
-        private readonly FileSystem _fileSystem;
+        private readonly IFileSystemService _fileSystem;
 
-        public DrivesController(ILogger<DrivesController> logger, FileSystem fileSystem)
+        public DrivesController(ILogger<DrivesController> logger, IFileSystemService fileSystem)
         {
             _logger = logger;
             _fileSystem = fileSystem;
         }
 
         [HttpGet]
-        public IEnumerable<Drive> Get()
+        public IEnumerable<DriveModel> Get()
         {
             return _fileSystem.GetDrives();
         }
@@ -31,7 +31,7 @@ namespace API.Controllers
         // GET api/Drives/C%3A%5C OR api/Drives/C:/ OR api/Drives/C
         // The drive name should be URL encoded
         [HttpGet("{name}")]
-        public ActionResult<Drive> Get(string name)
+        public ActionResult<DriveModel> Get(string name)
         {
             var driveRequested = HttpUtility.UrlDecode(name);
             var drive = _fileSystem.GetDrive(driveRequested);

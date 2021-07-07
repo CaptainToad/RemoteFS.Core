@@ -14,16 +14,16 @@ namespace API.Controllers
     public class FileSystemObjectsController : ControllerBase
     {
         private readonly ILogger<DrivesController> _logger;
-        private readonly FileSystem _fileSystem;
+        private readonly IFileSystemService _fileSystem;
 
-        public FileSystemObjectsController(ILogger<DrivesController> logger, FileSystem fileSystem)
+        public FileSystemObjectsController(ILogger<DrivesController> logger, IFileSystemService fileSystem)
         {
             _logger = logger;
             _fileSystem = fileSystem;
         }
 
         [HttpGet("{path}")]
-        public IEnumerable<FileSystemObject> Get(string path)
+        public IEnumerable<FileSystemObjectModel> Get(string path)
         {
             var decodedPath = HttpUtility.UrlDecode(path);
 
