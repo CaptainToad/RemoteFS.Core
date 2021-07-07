@@ -1,8 +1,7 @@
-﻿using API.Services;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Abstractions;
+﻿using Microsoft.Extensions.Logging.Abstractions;
 using NUnit.Framework;
 using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -45,6 +44,12 @@ namespace API.Services.Tests
             Assert.That(directories[0], Has.Property("Exists").EqualTo(true));
             Assert.That(directories[0], Has.Property("IsDirectory").EqualTo(true));
             Assert.That(directories[0], Has.Property("ParentName").EqualTo("C:\\Program Files"));
+        }
+
+        [Test()]
+        public void GetFileSystemObjects_GetNonExistentDirectory_ThrowsException()
+        {
+            Assert.Throws<AggregateException>(() => _FileSystemService.GetFileSystemObjects("C:\\Does\\not\\exist").Wait());
         }
     }
 }
