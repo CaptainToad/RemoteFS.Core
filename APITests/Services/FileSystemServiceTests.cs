@@ -34,5 +34,16 @@ namespace API.Services.Tests
 
             Assert.That(drive, Has.Property("Name").EqualTo("C:\\"));
         }
+
+        [Test()]
+        public void GetFileSystemObjects_GetProgramFilesDirectory_ReturnsFileSystemObject()
+        {
+            var directories = _FileSystemService.GetFileSystemObjects("C:\\Program Files");
+
+            Assert.That(directories, Has.Count.GreaterThan(0));
+            Assert.That(directories[0], Has.Property("Exists").EqualTo(true));
+            Assert.That(directories[0], Has.Property("IsDirectory").EqualTo(true));
+            Assert.That(directories[0], Has.Property("ParentName").EqualTo("C:\\Program Files"));
+        }
     }
 }
