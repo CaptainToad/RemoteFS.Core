@@ -19,7 +19,6 @@
     },
     "API": {
       "commandName": "Project",
-      "launchBrowser": true,
       "launchUrl": "drives",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
