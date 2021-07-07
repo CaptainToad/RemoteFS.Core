@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace API.Controllers
@@ -23,11 +24,11 @@ namespace API.Controllers
         }
 
         [HttpGet("{path}")]
-        public IEnumerable<FileSystemObjectModel> Get(string path)
+        public async Task<IEnumerable<FileSystemObjectModel>> Get(string path)
         {
             var decodedPath = HttpUtility.UrlDecode(path);
 
-            return _fileSystem.GetFileSystemObjects(decodedPath);
+            return await _fileSystem.GetFileSystemObjects(decodedPath);
         }
     }
 }

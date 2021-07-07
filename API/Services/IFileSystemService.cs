@@ -2,13 +2,14 @@ using API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace API.Services
 {
     public interface IFileSystemService
     {
-        DriveModel GetDrive(string driveName);
-        IList<DriveModel> GetDrives();
-        IList<FileSystemObjectModel> GetFileSystemObjects(string path);
+        Task<DriveModel> GetDrive(string driveName);
+        Task<IList<DriveModel>> GetDrives();
+        Task<IList<FileSystemObjectModel>> GetFileSystemObjects(string path);
     }
 }

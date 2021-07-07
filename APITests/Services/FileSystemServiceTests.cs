@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging.Abstractions;
 using NUnit.Framework;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace API.Services.Tests
 {
@@ -20,25 +21,25 @@ namespace API.Services.Tests
         }
 
         [Test()]
-        public void GetDrives_NoParameters_ReturnsListOfDrives()
+        public async Task GetDrives_NoParameters_ReturnsListOfDrives()
         {
-            var drives = _FileSystemService.GetDrives();
+            var drives = await _FileSystemService.GetDrives();
 
             Assert.That(drives, Has.Count.GreaterThan(0));
         }
 
         [Test()]
-        public void GetDrive_DriveC_ReturnsDrive()
+        public async Task GetDrive_DriveC_ReturnsDrive()
         {
-            var drive = _FileSystemService.GetDrive("C");
+            var drive = await _FileSystemService.GetDrive("C");
 
             Assert.That(drive, Has.Property("Name").EqualTo("C:\\"));
         }
 
         [Test()]
-        public void GetFileSystemObjects_GetProgramFilesDirectory_ReturnsFileSystemObject()
+        public async Task GetFileSystemObjects_GetProgramFilesDirectory_ReturnsFileSystemObject()
         {
-            var directories = _FileSystemService.GetFileSystemObjects("C:\\Program Files");
+            var directories = await _FileSystemService.GetFileSystemObjects("C:\\Program Files");
 
             Assert.That(directories, Has.Count.GreaterThan(0));
             Assert.That(directories[0], Has.Property("Exists").EqualTo(true));
