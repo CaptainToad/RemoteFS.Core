@@ -22,7 +22,7 @@ namespace API.Models
             {
                 var directoryInfo = fileSystemInfo as DirectoryInfo;
 
-                if (directoryInfo.Parent is not null)
+                if (directoryInfo?.Parent is not null)
                 {
                     ParentName = directoryInfo.Parent.FullName;
                 }
@@ -31,16 +31,16 @@ namespace API.Models
             {
                 var fileInfo = fileSystemInfo as FileInfo;
 
-                Size = fileInfo.Length;
-                if (fileInfo.Directory is not null)
+                Size = fileInfo?.Length;
+                if (fileInfo?.Directory is not null)
                 {
-                    DirectoryName = fileInfo?.DirectoryName;
+                    DirectoryName = fileInfo.DirectoryName;
                 }
             }
         }
 
         public string Name { get; set; }
-        public long Size { get; set; }
+        public long? Size { get; set; }
         public bool Exists { get; set; }
         public string Extension { get; set; }
         public string FullName { get; set; }

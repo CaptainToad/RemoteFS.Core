@@ -2,9 +2,7 @@
 using API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -21,6 +19,8 @@ namespace API.Controllers
         {
             _logger = logger;
             _fileSystem = fileSystem;
+
+            _logger.LogInformation($"Created {nameof(DrivesController)} controller");
         }
 
         [HttpGet]
@@ -35,6 +35,8 @@ namespace API.Controllers
         public async Task<ActionResult<DriveModel>> Get(string name)
         {
             var driveRequested = HttpUtility.UrlDecode(name);
+            _logger.LogInformation($"Getting drive: {driveRequested}");
+
             var drive = await _fileSystem.GetDrive(driveRequested);
 
             return drive;
